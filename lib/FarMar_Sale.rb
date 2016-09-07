@@ -5,6 +5,7 @@ require_relative '../FarMar/'
 require 'date'
 
 class FarMar::Sale
+  include FarMar
 
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
@@ -34,20 +35,34 @@ class FarMar::Sale
     return match
   end
 
-  def vendor
+  # def vendor #################ERROR :(
+  #   see Module FarMar
+  # end
 
-  end
+  # def product
+  #   product_sold = 0
+  #   CSV.open("support/products.csv", 'r').each do |line|
+  #     if line[0] == product_id.to_s
+  #       product_sold = FarMar::Product.new(line[0], line[1], line[2])
+  #     end
+  #   end
+  #   return product_sold
+  # end
 
-  def sales
-
-  end
-
-  def number_of_sales
-
-  end
-
-  def self.by_vendor(vendor_id)
-
+  def self.between(beginning_time, end_time)
+    timely_purchases = []
+    CSV.open("support/sales.csv", 'r').each do |line|
+      time = DateTime.parse(line[2]).to_time
+      if time <= end_time && time >= beginning_time
+        puts time
+        timely_purchases << FarMar::Sale.new(line[0], line[1], line[2], line[3], line[4])
+      end
+    end
+    return timely_purchases
   end
 
 end
+
+# d = FarMar::Sale.new("1","9290","2013-11-07 04:34:56 -0800","1","1")
+# puts d.vendor
+# puts FarMar::Sale.between(DateTime.parse("2013-11-07 04:34:56 -0800").to_time, DateTime.parse("2013-11-07 13:01:30 -0800").to_time)

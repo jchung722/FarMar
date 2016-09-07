@@ -3,6 +3,7 @@
 require_relative '../FarMar/'
 
 class FarMar::Product
+  include FarMar
 
   attr_reader :id, :name, :vendor_id
 
@@ -18,7 +19,6 @@ class FarMar::Product
       collection << FarMar::Product.new(line[0], line[1], line[2])
     end
     return collection
-
   end
 
   def self.find(id)
@@ -31,16 +31,39 @@ class FarMar::Product
     return match
   end
 
-  def vendor
+  # def vendor
+  #   see Module FarMar
+  # end
 
+  def sales
+    product_sales = []
+    CSV.open("support/sales.csv", 'r').each do |line|
+      if line[4] == id.to_s
+        product_sales << FarMar::Sale.new(line[0], line[1], line[2], line[3], line[4])
+      end
+    end
+    return product_sales
   end
 
-  def product
-
+  def number_of_sales
+    array_sales = sales
+    num_sales = array_sales.length
+    puts "#{num_sales} #{name} were sold"
+    return num_sales
   end
 
-  def self.between(beginning_time, end_time)
-
+  def self.by_vendor(vendor_id)
+    vendor_products = []
+    CSV.open("support/products.csv", 'r').each do |line|
+      if line[2] == vendor_id.to_s
+        vendor_products << FarMar::Product.new(line[0], line[1], line[2])
+      end
+    end
+    return vendor_products
   end
 
 end
+
+c = FarMar::Product.new("1","Dry Beets","1")
+puts c.vendor
+# puts FarMar::Product.by_vendor(8)

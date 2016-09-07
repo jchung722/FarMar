@@ -48,3 +48,4 @@ end
 
 # a = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
 # puts a.vendors
+# puts FarMar::Market.find(1)

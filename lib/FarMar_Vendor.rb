@@ -82,7 +82,7 @@ class FarMar::Vendor
 
 end
 
-# puts FarMar::Vendor.by_market(1)
-a = FarMar::Vendor.new("1","Feil-Farrell","8","1")
-puts a.revenue
-# puts a.products
+puts FarMar::Vendor.by_market(1)
+# b = FarMar::Vendor.new("1","Feil-Farrell","8","1")
+# puts b.revenue
+# puts b.products
