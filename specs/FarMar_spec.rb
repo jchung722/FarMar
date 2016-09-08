@@ -97,20 +97,25 @@ describe 'Testing FarMar' do
     expect(FarMar::Vendor.find(1).name).must_equal("Feil-Farrell")
   end
 
-  it "market" do
-
+  it "Must return instance of market traced by market_id in vendor" do
+    expect(new_vendor.market).must_be_instance_of(FarMar::Market)
+    expect(new_vendor.market.name).must_equal("People's Co-op Farmers Market")
   end
 
-  it "product" do
-
+  it "Must return all instances of products sold by vendor" do
+    expect(new_vendor.products).must_be_instance_of(Array)
+    expect(new_vendor.products.length).must_equal(1)
   end
 
-  it "sales & revenue" do
-
+  it "Must return all vendor sales & total revenue" do
+    expect(new_vendor.sales).must_be_instance_of(Array)
+    expect(new_vendor.sales.length).must_equal(7)
+    expect(new_vendor.revenue).must_equal(9290+2262+9588+1634+4440+6950+4095)
   end
 
-  it "selfbymarket" do
-
+  it "Must return list of vendors traced by market_id in vendor" do
+    expect(FarMar::Vendor.by_market(1)).must_be_instance_of(Array)
+    expect(FarMar::Vendor.by_market(1).length).must_equal(6)
   end
 
 end
