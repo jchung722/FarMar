@@ -28,6 +28,11 @@ describe 'Testing FarMar' do
     expect(new_market.vendors.length).must_equal(6)
   end
 
+  it "Must return a list of products sold at the Market" do
+    expect(new_market.products).must_be_instance_of(Array)
+    expect(new_market.products.length).must_equal(13)
+  end
+
 #############--------------FarMar::Product Tests--------------------###########
 
   it "Must return Product class" do

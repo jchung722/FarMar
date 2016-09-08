@@ -37,4 +37,13 @@ class FarMar::Market
     FarMar::Vendor.by_market(id)
   end
 
+  def products
+    vendor_list = vendors
+    products = []
+    vendor_list.each do |vendor|
+      products += vendor.products
+    end
+    return products
+  end
+
 end
