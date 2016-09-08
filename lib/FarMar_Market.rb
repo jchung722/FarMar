@@ -32,14 +32,9 @@ class FarMar::Market
     return match
   end
 
+  #vendor method: uses FarMar::Vendor class's self.by_market method
   def vendors
-    market_vendors = []
-    CSV.open("support/vendors.csv", 'r').each do |line|
-      if line[3] == id.to_s
-        market_vendors << FarMar::Vendor.new(line[0], line[1], line[2], line[3])
-      end
-    end
-    return market_vendors
+    FarMar::Vendor.by_market(id)
   end
 
 end

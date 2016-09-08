@@ -34,7 +34,7 @@ class FarMar::Sale
   end
 
   # def vendor
-  #   see Module FarMar
+  #   see Module FarMar for method
   # end
 
   #product uses FarMar::Product's self.find method

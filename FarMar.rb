@@ -20,15 +20,15 @@ require_relative 'lib/FarMar_Vendor'
 require_relative 'lib/FarMar_Sale'
 require_relative 'lib/FarMar_Product'
 
-# a = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
-# puts a.vendors
+a = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
+puts a.vendors
 # puts FarMar::Market.find(1)
 
 # puts FarMar::Vendor.by_market(1)
-b = FarMar::Vendor.new("1","Feil-Farrell","8","1")
+# b = FarMar::Vendor.new("1","Feil-Farrell","8","1")
 # puts b.revenue
 # puts b.products
-puts b.market.name
+# puts b.market.name
 
 # c = FarMar::Product.new("1","Dry Beets","1")
 # puts c.vendor
