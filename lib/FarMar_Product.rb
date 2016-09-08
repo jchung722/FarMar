@@ -1,7 +1,5 @@
 #FarMar_Product.rb
 
-require_relative '../FarMar/'
-
 class FarMar::Product
   include FarMar
 
@@ -63,7 +61,3 @@ class FarMar::Product
   end
 
 end
-
-c = FarMar::Product.new("1","Dry Beets","1")
-puts c.vendor
-# puts FarMar::Product.by_vendor(8)

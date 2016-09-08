@@ -1,7 +1,5 @@
 #FarMar_Vendor.rb
 
-require_relative '../FarMar/'
-
 class FarMar::Vendor
 
   attr_reader :id, :name, :num_employees, :market_id
@@ -31,25 +29,25 @@ class FarMar::Vendor
     return match
   end
 
-  # def market
-  #   vendor_market = 0
-  #   CSV.open("support/markets.csv", 'r').each do |line|
-  #     if line[0] == market_id.to_s
-  #       vendor_market = FarMar::Market.new(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
-  #     end
-  #   end
-  #   return vendor_market
-  # end
-  #
-  # def products
-  #   vendor_products = []
-  #   CSV.open("support/products.csv", 'r').each do |line|
-  #     if line[2] == id.to_s
-  #       vendor_products << FarMar::Product.new(line[0], line[1], line[2])
-  #     end
-  #   end
-  #   return vendor_products
-  # end
+  def market
+    vendor_market = 0
+    CSV.open("support/markets.csv", 'r').each do |line|
+      if line[0] == market_id.to_s
+        vendor_market = FarMar::Market.new(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
+      end
+    end
+    return vendor_market
+  end
+
+  def products
+    vendor_products = []
+    CSV.open("support/products.csv", 'r').each do |line|
+      if line[2] == id.to_s
+        vendor_products << FarMar::Product.new(line[0], line[1], line[2])
+      end
+    end
+    return vendor_products
+  end
 
   def sales
     vendor_sales = []
@@ -81,8 +79,3 @@ class FarMar::Vendor
   end
 
 end
-
-puts FarMar::Vendor.by_market(1)
-# b = FarMar::Vendor.new("1","Feil-Farrell","8","1")
-# puts b.revenue
-# puts b.products

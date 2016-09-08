@@ -1,7 +1,5 @@
 #FarMar_Market.rb
 
-require_relative '../FarMar/'
-
 class FarMar::Market
 
   attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -45,7 +43,3 @@ class FarMar::Market
   end
 
 end
-
-# a = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
-# puts a.vendors
-# puts FarMar::Market.find(1)

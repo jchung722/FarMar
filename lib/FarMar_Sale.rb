@@ -1,7 +1,5 @@
 #FarMar_Sale.rb
 
-require_relative '../FarMar/'
-
 require 'date'
 
 class FarMar::Sale
@@ -35,19 +33,19 @@ class FarMar::Sale
     return match
   end
 
-  # def vendor #################ERROR :(
+  # def vendor
   #   see Module FarMar
   # end
 
-  # def product
-  #   product_sold = 0
-  #   CSV.open("support/products.csv", 'r').each do |line|
-  #     if line[0] == product_id.to_s
-  #       product_sold = FarMar::Product.new(line[0], line[1], line[2])
-  #     end
-  #   end
-  #   return product_sold
-  # end
+  def product
+    product_sold = 0
+    CSV.open("support/products.csv", 'r').each do |line|
+      if line[0] == product_id.to_s
+        product_sold = FarMar::Product.new(line[0], line[1], line[2])
+      end
+    end
+    return product_sold
+  end
 
   def self.between(beginning_time, end_time)
     timely_purchases = []
@@ -62,7 +60,3 @@ class FarMar::Sale
   end
 
 end
-
-# d = FarMar::Sale.new("1","9290","2013-11-07 04:34:56 -0800","1","1")
-# puts d.vendor
-# puts FarMar::Sale.between(DateTime.parse("2013-11-07 04:34:56 -0800").to_time, DateTime.parse("2013-11-07 13:01:30 -0800").to_time)
