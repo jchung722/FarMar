@@ -47,7 +47,6 @@ class FarMar::Sale
     CSV.open("support/sales.csv", 'r').each do |line|
       time = DateTime.parse(line[2]).to_time
       if time <= end_time && time >= beginning_time
-        puts time
         timely_purchases << FarMar::Sale.new(line[0], line[1], line[2], line[3], line[4])
       end
     end

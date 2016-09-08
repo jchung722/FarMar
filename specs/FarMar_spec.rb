@@ -45,9 +45,9 @@ describe 'Testing FarMar' do
     expect(new_product.vendor.name).must_equal("Feil-Farrell")
   end
 
-  it "Must return all instances of sales of specified product" do
+  it "Must return all instances of sales of specified product and number of sales" do
     expect(new_product.sales).must_be_instance_of(Array)
-    expect(new_product.sales.length).must_equal(7)
+    expect(new_product.number_of_sales).must_equal(7)
   end
 
   it "Must return list of products sold at a vendor (traced by id)" do
@@ -67,6 +67,24 @@ describe 'Testing FarMar' do
     expect(FarMar::Sale.find(1).vendor_id).must_equal(1)
   end
 
+  it "Must return instance of vendor traced by vendor_id in sale" do
+    expect(new_sale.vendor).must_be_instance_of(FarMar::Vendor)
+    expect(new_sale.vendor.name).must_equal("Feil-Farrell")
+  end
+
+  it "Must return instance of product traced by product_id in sale" do
+    expect(new_sale.product).must_be_instance_of(FarMar::Product)
+    expect(new_sale.product.name).must_equal("Dry Beets")
+  end
+
+  it "Must return instances of sales made between defined time limits" do
+    time_a = DateTime.parse("2013-11-07 04:30:00 -0800").to_time
+    time_b = DateTime.parse("2013-11-07 05:00:00 -0800").to_time
+    sales_array = FarMar::Sale.between(time_a, time_b)
+    expect(sales_array).must_be_instance_of(Array)
+    expect(sales_array[0].purchase_time >= time_a && sales_array[0].purchase_time <= time_b).must_equal(true)
+  end
+
 #############--------------FarMar::Vendor Tests--------------------#############
 
   it "Must return Vendor class" do
@@ -77,6 +95,22 @@ describe 'Testing FarMar' do
   it "Must return all instances of vendors and find vendor by id" do
     expect(FarMar::Vendor.all?.class).must_equal(Array)
     expect(FarMar::Vendor.find(1).name).must_equal("Feil-Farrell")
+  end
+
+  it "market" do
+
+  end
+
+  it "product" do
+
+  end
+
+  it "sales & revenue" do
+
+  end
+
+  it "selfbymarket" do
+
   end
 
 end

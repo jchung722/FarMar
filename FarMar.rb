@@ -36,4 +36,4 @@ require_relative 'lib/FarMar_Product'
 
 # d = FarMar::Sale.new("1","9290","2013-11-07 04:34:56 -0800","1","1")
 # puts d.product.name
-# puts FarMar::Sale.between(DateTime.parse("2013-11-07 04:34:56 -0800").to_time, DateTime.parse("2013-11-07 13:01:30 -0800").to_time)
+# puts FarMar::Sale.between(DateTime.parse("2013-11-07 04:30:00 -0800").to_time, DateTime.parse("2013-11-07 05:00:00 -0800").to_time)
