@@ -37,14 +37,9 @@ class FarMar::Sale
   #   see Module FarMar
   # end
 
+  #product uses FarMar::Product's self.find method
   def product
-    product_sold = 0
-    CSV.open("support/products.csv", 'r').each do |line|
-      if line[0] == product_id.to_s
-        product_sold = FarMar::Product.new(line[0], line[1], line[2])
-      end
-    end
-    return product_sold
+    FarMar::Product.find(product_id)
   end
 
   def self.between(beginning_time, end_time)
