@@ -40,6 +40,21 @@ describe 'Testing FarMar' do
     expect(FarMar::Product.find(1).name).must_equal("Dry Beets")
   end
 
+  it "Must return instance of vendor traced by product" do
+    expect(new_product.vendor).must_be_instance_of(FarMar::Vendor)
+    expect(new_product.vendor.name).must_equal("Feil-Farrell")
+  end
+
+  it "Must return all instances of sales of specified product" do
+    expect(new_product.sales).must_be_instance_of(Array)
+    expect(new_product.sales.length).must_equal(7)
+  end
+
+  it "Must return list of products sold at a vendor (traced by id)" do
+    expect(FarMar::Product.by_vendor(3)).must_be_instance_of(Array)
+    expect(FarMar::Product.by_vendor(3)[0].name).must_equal("Yummy Fruit")
+  end
+
 #############--------------FarMar::Sale Tests--------------------#############
 
   it "Must return Sale class" do

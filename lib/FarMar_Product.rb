@@ -33,6 +33,7 @@ class FarMar::Product
   #   see Module FarMar
   # end
 
+  #sales method: returns list of sales of the product
   def sales
     product_sales = []
     CSV.open("support/sales.csv", 'r').each do |line|
@@ -43,6 +44,7 @@ class FarMar::Product
     return product_sales
   end
 
+  #number_of_sales method: calculates number of sales based on return of sales method.
   def number_of_sales
     array_sales = sales
     num_sales = array_sales.length
@@ -50,6 +52,7 @@ class FarMar::Product
     return num_sales
   end
 
+  #self.by_vendor method: returns list of products based on vendor_id input
   def self.by_vendor(vendor_id)
     vendor_products = []
     CSV.open("support/products.csv", 'r').each do |line|
