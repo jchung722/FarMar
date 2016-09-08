@@ -28,7 +28,7 @@ require_relative 'lib/FarMar_Product'
 b = FarMar::Vendor.new("1","Feil-Farrell","8","1")
 # puts b.revenue
 puts b.products
-puts b.market
+# puts b.market
 
 # c = FarMar::Product.new("1","Dry Beets","1")
 # puts c.vendor

@@ -40,13 +40,7 @@ class FarMar::Vendor
   end
 
   def products
-    vendor_products = []
-    CSV.open("support/products.csv", 'r').each do |line|
-      if line[2] == id.to_s
-        vendor_products << FarMar::Product.new(line[0], line[1], line[2])
-      end
-    end
-    return vendor_products
+    FarMar::Product.by_vendor(id)
   end
 
   def sales
