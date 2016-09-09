@@ -46,4 +46,15 @@ class FarMar::Market
     return products
   end
 
+  def self.search(search_term)
+    matched_markets = []
+    markets = self.all?
+    markets.each do |market|
+      if market.name.downcase.include?(search_term)
+        matched_markets << market
+      end
+    end
+    return matched_markets
+  end
+
 end

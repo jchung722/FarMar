@@ -33,6 +33,14 @@ describe 'Testing FarMar' do
     expect(new_market.products.length).must_equal(13)
   end
 
+  it "Must return instances where Market name or Vendor name contain a search term" do
+    expect(FarMar::Market.search("school").length).must_equal(3)
+    name_array = FarMar::Market.search("school").map do |market|
+      market.name
+    end
+    expect(name_array).must_include("Fox School Farmers Market")
+  end
+
 #############--------------FarMar::Product Tests--------------------###########
 
   it "Must return Product class" do
