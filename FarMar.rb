@@ -1,13 +1,15 @@
 #FarMar.rb
 require 'csv'
 
+#create FarMar module
 module FarMar
 
+#vendor method: used in Sale and Product classes using 'include'
 def vendor
-  vendor_match = 0
-  CSV.open("support/vendors.csv", 'r').each do |line|
-    if line[0] == vendor_id.to_s
-      vendor_match = FarMar::Vendor.new(line[0], line[1], line[2], line[3])
+  vendor_match = 0 #set initial value of variable
+  CSV.open("support/vendors.csv", 'r').each do |line| #open csv file
+    if line[0] == vendor_id.to_s #checks to see if id in csv file matches vendor_id trace of object.
+      vendor_match = FarMar::Vendor.new(line[0], line[1], line[2], line[3]) #sets variable to matching vendor instance
     end
   end
   return vendor_match
@@ -26,7 +28,6 @@ require_relative 'lib/FarMar_Product'
 # puts a.randomstuff
 # puts a.preferred_vendor.name
 # puts a.worst_vendor.name
-# puts FarMar::Market.search('school')
 
 # puts FarMar::Vendor.by_market(1)
 # b = FarMar::Vendor.new("1","Feil-Farrell","8","1")

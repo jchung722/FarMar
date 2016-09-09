@@ -1,11 +1,13 @@
 #FarMar_Market.rb
 
+#Market class under FarMar module
 class FarMar::Market
 
   attr_reader :id, :name, :address, :city, :county, :state, :zip
 
+  #initialize object with instance variables according to csv file data
   def initialize(id, name, address, city, county, state, zip)
-    @id = id.to_i
+    @id = id.to_i #convert to fixnum
     @name = name
     @address = address
     @city = city
@@ -14,6 +16,7 @@ class FarMar::Market
     @zip = zip
   end
 
+  #self.all method: lists all Market objects in an Array
   def self.all?
     market_list = []
     CSV.open("support/markets.csv", 'r').each do |line|
@@ -22,6 +25,7 @@ class FarMar::Market
     return market_list
   end
 
+  #self.find method: finds instance of Market with input id
   def self.find(id)
     match = 0
     CSV.open("support/markets.csv", 'r').each do |line|
@@ -32,31 +36,34 @@ class FarMar::Market
     return match
   end
 
-  #vendor method: uses FarMar::Vendor class's self.by_market method
+  #vendors method: uses FarMar::Vendor class's self.by_market method to list all vendors associated with Market
   def vendors
     FarMar::Vendor.by_market(id)
   end
 
+  #products method: lists all products sold at the Market based on list of vendors(from vendors method)
   def products
-    vendor_list = vendors
+    vendor_list = vendors #vendors method returns list of vendors
     products = []
     vendor_list.each do |vendor|
-      products += vendor.products
+      products += vendor.products #call products method on specified vendor
     end
     return products
   end
 
+  #self.search method: lists all markets that have the search_term. not case sensitive :)
   def self.search(search_term)
     matched_markets = []
     markets = self.all?
     markets.each do |market|
-      if market.name.downcase.include?(search_term)
+      if market.name.downcase.include?(search_term.downcase)
         matched_markets << market
       end
     end
     return matched_markets
   end
 
+  #preferred_vendor method: returns vendor with highest revenue; no input gives total revenue, and an input day gives revenue for given date.
   def preferred_vendor(date= "all")
     vendor_list = vendors
     best_vendor_revenue = 0
@@ -70,6 +77,7 @@ class FarMar::Market
     return best_vendor
   end
 
+  #worst_vendor method: returns vendor with lowest revenue; only works on total revenue for now; haven't tackled specific date because I didn't want to deal with ties =_=
   def worst_vendor
     vendor_list = vendors
     worst_vendor_revenue = preferred_vendor.revenue
