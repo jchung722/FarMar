@@ -57,4 +57,43 @@ class FarMar::Market
     return matched_markets
   end
 
+  def preferred_vendor(date= "all")
+    vendor_list = vendors
+    best_vendor_revenue = 0
+    best_vendor = 0
+    vendor_list.each do |vendor|
+      if vendor.revenue(date) > best_vendor_revenue
+        best_vendor_revenue = vendor.revenue(date)
+        best_vendor = vendor
+      end
+    end
+    return best_vendor
+  end
+
+  def worst_vendor
+    vendor_list = vendors
+    worst_vendor_revenue = preferred_vendor.revenue
+    worst_vendor = 0
+    vendor_list.each do |vendor|
+      if vendor.revenue < worst_vendor_revenue
+        worst_vendor_revenue = vendor.revenue
+        worst_vendor = vendor
+      end
+    end
+    return worst_vendor
+  end
+
+  ##randomstuff method: just wanted to see which vendor had the highest/lowest revenue without calculating by hand :P
+  # def randomstuff
+  #   vendor_list = vendors
+  #   names = vendor_list.map do |vendor|
+  #     vendor.name
+  #   end
+  #   a = vendor_list.map do |vendor|
+  #     vendor.revenue("2013-11-06")
+  #   end
+  #   puts names
+  #   puts a
+  # end
+
 end

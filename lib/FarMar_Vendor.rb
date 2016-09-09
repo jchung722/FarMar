@@ -1,5 +1,7 @@
 #FarMar_Vendor.rb
 
+require 'date'
+
 class FarMar::Vendor
 
   attr_reader :id, :name, :num_employees, :market_id
@@ -49,13 +51,24 @@ class FarMar::Vendor
     return vendor_sales
   end
 
-  def revenue
+  def revenue(date= "all")
     total_revenue = 0
     vendor_sales = sales
-    vendor_sales.each do |sale|
-      total_revenue += sale.amount
+    if date == "all"
+      vendor_sales.each do |sale|
+        total_revenue += sale.amount
+      end
+      return total_revenue
+    else
+      begin_day = DateTime.parse("#{date} " + "00:00:00 " + "-0800").to_time
+      end_day = DateTime.parse("#{date} " + "23:59:59 " + "-0800").to_time
+      vendor_sales.each do |sale|
+        if sale.purchase_time >= begin_day && sale.purchase_time <= end_day
+          total_revenue += sale.amount
+        end
+      end
+      return total_revenue
     end
-    return total_revenue
   end
 
   def self.by_market(market_id)

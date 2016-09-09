@@ -23,12 +23,14 @@ require_relative 'lib/FarMar_Product'
 #########------------------Random Test Stuff-----------------------###########
 
 # a = FarMar::Market.new("1","People's Co-op Farmers Market","30th and Burnside","Portland","Multnomah","Oregon","97202")
-# puts a.products
+# puts a.randomstuff
+# puts a.preferred_vendor.name
+# puts a.worst_vendor.name
 # puts FarMar::Market.search('school')
 
 # puts FarMar::Vendor.by_market(1)
 # b = FarMar::Vendor.new("1","Feil-Farrell","8","1")
-# puts b.revenue
+# puts b.revenue("2013-11-06")
 # puts b.products
 # puts b.market.name
 

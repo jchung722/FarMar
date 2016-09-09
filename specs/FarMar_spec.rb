@@ -41,6 +41,16 @@ describe 'Testing FarMar' do
     expect(name_array).must_include("Fox School Farmers Market")
   end
 
+  it "Must return instance of vendor with the best and worst overall revenue" do
+    expect(new_market.preferred_vendor.name).must_equal("Reynolds, Schmitt and Klocko")
+    expect(new_market.worst_vendor.name).must_equal("Zulauf and Sons")
+  end
+
+  it "Must return instance(s) of vendor(s) with best and worst revenue on a given day" do
+    expect(new_market.preferred_vendor("2013-11-07").name).must_equal("Feil-Farrell")
+    # expect(new_market.worst_vendor("2013-11-06")).must_equal
+  end
+
 #############--------------FarMar::Product Tests--------------------###########
 
   it "Must return Product class" do
@@ -129,6 +139,10 @@ describe 'Testing FarMar' do
   it "Must return list of vendors traced by market_id in vendor" do
     expect(FarMar::Vendor.by_market(1)).must_be_instance_of(Array)
     expect(FarMar::Vendor.by_market(1).length).must_equal(6)
+  end
+
+  it "Must return total revenue of a given day" do
+    expect(new_vendor.revenue("2013-11-06")).must_equal(1634)
   end
 
 end
